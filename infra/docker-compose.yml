@@ -1,0 +1,9 @@
+services:
+  database:
+    container_name: book-rating-db
+    build:
+      context: ./postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./postgres/.env
