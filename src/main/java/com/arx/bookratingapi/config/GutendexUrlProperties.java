@@ -12,7 +12,8 @@ import org.springframework.context.annotation.Configuration;
 public class GutendexUrlProperties {
 
     private String baseUrl;
-    private String booksPath;
+    private String searchBooksPath;
+    private String searchBookByIdPath;
 
     private String searchParam;
 

@@ -13,5 +13,6 @@ spring:
 app:
   gutendex-client:
     base-url: https://gutendex.com
-    books-path: books/
+    search-books-path: books/
+    search-book-by-id-path: books/{id}/
     search-param: search

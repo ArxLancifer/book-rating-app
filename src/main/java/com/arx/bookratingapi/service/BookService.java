@@ -18,13 +18,20 @@ public class BookService {
 
     public GutendexBookResponse searchBooksByTitle(String title) {
 
-        GutendexBookResponse gutendexBookResponse = gutendexClient.get().uri(uriBuilder -> uriBuilder
-                .path(gutendexUrlProperties.getBooksPath())
+        return gutendexClient.get().uri(uriBuilder -> uriBuilder
+                .path(gutendexUrlProperties.getSearchBooksPath())
                 .queryParam(gutendexUrlProperties.getSearchParam(), title)
                 .build())
                 .retrieve()
                 .body(GutendexBookResponse.class);
+    }
 
-        return gutendexBookResponse;
+    public void searchBookById(Long bookId){
+
+        gutendexClient.get().uri(uriBuilder -> uriBuilder
+                .path(gutendexUrlProperties.getSearchBookByIdPath())
+                .build(bookId))
+                .retrieve()
+                .body(GutendexBookResponse.GutendexBook.class);
     }
 }
