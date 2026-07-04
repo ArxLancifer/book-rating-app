@@ -1,19 +1,18 @@
 package com.arx.bookratingapi.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "book_rating")
+@Table(name = "book_review")
 @NoArgsConstructor
 @Getter
-public class BookRating extends AbstractAuditingEntity {
+public class BookReview extends AbstractAuditingEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_rating_seq")
-    @SequenceGenerator(name = "book_rating_seq", sequenceName = "book_rating_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_review_seq")
+    @SequenceGenerator(name = "book_review_seq", sequenceName = "book_review_seq", allocationSize = 1)
     Long id;
 
     @Column(name = "book_id", nullable = false)
@@ -25,7 +24,7 @@ public class BookRating extends AbstractAuditingEntity {
     @Column(name = "review")
     String review;
 
-    public BookRating(Long bookId, Float rating, String review){
+    public BookReview(Long bookId, Float rating, String review){
         this.bookId = bookId;
         this.rating = rating;
         this.review = review;
