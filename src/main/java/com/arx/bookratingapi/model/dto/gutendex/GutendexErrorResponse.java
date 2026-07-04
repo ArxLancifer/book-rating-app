@@ -1,4 +1,4 @@
-package com.arx.bookratingapi.model.dto;
+package com.arx.bookratingapi.model.dto.gutendex;
 
 public record GutendexErrorResponse(String detail) {
 }

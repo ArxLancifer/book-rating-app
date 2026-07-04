@@ -1,11 +1,12 @@
 package com.arx.bookratingapi.service;
 
-import com.arx.bookratingapi.model.dto.GutendexBookResponse;
+import com.arx.bookratingapi.model.dto.PagedResults;
+import com.arx.bookratingapi.model.dto.gutendex.SingleBookResponse;
 
 public interface BookService {
 
-    GutendexBookResponse searchByTitle(String title);
+    PagedResults<SingleBookResponse> searchByTitle(String title, Integer page);
 
-    GutendexBookResponse.GutendexBook searchById(Long bookId);
+    SingleBookResponse searchById(Long bookId);
 
 }

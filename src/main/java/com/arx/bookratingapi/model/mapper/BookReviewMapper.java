@@ -2,7 +2,7 @@ package com.arx.bookratingapi.model.mapper;
 
 import com.arx.bookratingapi.model.dto.BookReviewCommand;
 import com.arx.bookratingapi.model.dto.DetailedBookReviewResponse;
-import com.arx.bookratingapi.model.dto.GutendexBookResponse;
+import com.arx.bookratingapi.model.dto.gutendex.SingleBookResponse;
 import com.arx.bookratingapi.model.entity.BookReview;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,7 @@ public final class BookReviewMapper {
         );
     }
 
-    public static DetailedBookReviewResponse toDetailedBookReviewResponse(GutendexBookResponse.GutendexBook gutendexBook, List<BookReview> bookReviews, Float avgRating){
+    public static DetailedBookReviewResponse toDetailedBookReviewResponse(SingleBookResponse gutendexBook, List<BookReview> bookReviews, Float avgRating){
 
         List<String> reviews = bookReviews.stream().map(BookReview::getReview).filter(Objects::nonNull).toList();
 

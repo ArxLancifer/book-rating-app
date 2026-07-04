@@ -3,7 +3,7 @@ package com.arx.bookratingapi.service.impl;
 import com.arx.bookratingapi.exceptionhandler.customexceptions.NotFoundException;
 import com.arx.bookratingapi.model.dto.BookReviewCommand;
 import com.arx.bookratingapi.model.dto.DetailedBookReviewResponse;
-import com.arx.bookratingapi.model.dto.GutendexBookResponse;
+import com.arx.bookratingapi.model.dto.gutendex.SingleBookResponse;
 import com.arx.bookratingapi.model.entity.BookReview;
 import com.arx.bookratingapi.model.mapper.BookReviewMapper;
 import com.arx.bookratingapi.repository.BookReviewRepository;
@@ -40,7 +40,7 @@ public class BookReviewServiceImpl implements BookReviewService {
 
         checkBookHasReviews(bookReviews, bookId);
 
-        GutendexBookResponse.GutendexBook bookResponse = bookServiceImpl.searchById(bookId);
+        SingleBookResponse bookResponse = bookServiceImpl.searchById(bookId);
 
         return BookReviewMapper.toDetailedBookReviewResponse(bookResponse, bookReviews, bookReviews.getFirst().getRating());
     }

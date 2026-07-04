@@ -1,7 +1,7 @@
 package com.arx.bookratingapi.exceptionhandler;
 
 import com.arx.bookratingapi.exceptionhandler.customexceptions.NotFoundException;
-import com.arx.bookratingapi.model.dto.GutendexErrorResponse;
+import com.arx.bookratingapi.model.dto.gutendex.GutendexErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;

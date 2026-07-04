@@ -1,7 +1,9 @@
 package com.arx.bookratingapi.controller;
 
-import com.arx.bookratingapi.model.dto.GutendexBookResponse;
+import com.arx.bookratingapi.model.dto.PagedResults;
+import com.arx.bookratingapi.model.dto.gutendex.SingleBookResponse;
 import com.arx.bookratingapi.service.BookService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +24,9 @@ public class BookSearchController {
     }
 
     @GetMapping(BOOKS_SEARCH)
-    public ResponseEntity<GutendexBookResponse> searchByTitle(@RequestParam String title) {
-        GutendexBookResponse response = bookService.searchByTitle(title);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<PagedResults<SingleBookResponse>> searchByTitle(@RequestParam String title, @RequestParam(defaultValue = "1") Integer page) {
+        PagedResults<SingleBookResponse> response = bookService.searchByTitle(title, page);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }
