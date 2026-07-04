@@ -23,7 +23,7 @@ public class BookSearchController {
 
     @GetMapping(BOOKS_SEARCH)
     public ResponseEntity<GutendexBookResponse> searchByTitle(@RequestParam String title) {
-        GutendexBookResponse response = bookService.searchBooksByTitle(title);
+        GutendexBookResponse response = bookService.searchByTitle(title);
         return ResponseEntity.ok(response);
     }
 
