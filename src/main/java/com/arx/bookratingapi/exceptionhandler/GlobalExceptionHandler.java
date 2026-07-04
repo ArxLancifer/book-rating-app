@@ -1,5 +1,6 @@
 package com.arx.bookratingapi.exceptionhandler;
 
+import com.arx.bookratingapi.exceptionhandler.customexceptions.NotFoundException;
 import com.arx.bookratingapi.model.dto.GutendexErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -60,5 +61,15 @@ public class GlobalExceptionHandler {
 
 
         return new ResponseEntity<>(problemDetail, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ProblemDetail> handleNotFoundException(NotFoundException e){
+
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
+        problemDetail.setTitle(HttpStatus.NOT_FOUND.getReasonPhrase());
+        problemDetail.setDetail(e.getMessage());
+
+        return new ResponseEntity<>(problemDetail, HttpStatus.NOT_FOUND);
     }
 }
