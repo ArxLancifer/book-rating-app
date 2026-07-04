@@ -5,12 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestClientResponseException;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -43,11 +45,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ProblemDetail> handleBadRequestException(MethodArgumentNotValidException e){
 
-        Map<String, String> fieldErrors = e.getBindingResult().getFieldErrors().stream()
+        Map<String, List<String>> fieldErrors = e.getBindingResult().getFieldErrors().stream()
             .collect(
-                Collectors.toMap(
-                fieldError -> fieldError.getField(),
-                fieldError -> Objects.toString(fieldError.getDefaultMessage(), "Invalid Argument")
+                Collectors.groupingBy(
+                FieldError::getField,
+                Collectors.mapping(FieldError::getDefaultMessage, Collectors.toList())
                 )
             );
 
