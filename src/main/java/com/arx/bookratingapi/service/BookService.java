@@ -26,9 +26,9 @@ public class BookService {
                 .body(GutendexBookResponse.class);
     }
 
-    public void searchBookById(Long bookId){
+    public GutendexBookResponse.GutendexBook searchBookById(Long bookId){
 
-        gutendexClient.get().uri(uriBuilder -> uriBuilder
+       return gutendexClient.get().uri(uriBuilder -> uriBuilder
                 .path(gutendexUrlProperties.getSearchBookByIdPath())
                 .build(bookId))
                 .retrieve()
