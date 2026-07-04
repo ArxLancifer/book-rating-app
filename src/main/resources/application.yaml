@@ -9,3 +9,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+
+app:
+  gutendex-client:
+    base-url: https://gutendex.com
+    books-path: books/
+    search-param: search
