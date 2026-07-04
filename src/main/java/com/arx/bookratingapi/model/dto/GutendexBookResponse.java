@@ -9,7 +9,7 @@ import java.util.List;
 public record GutendexBookResponse(Integer count, String next, String previous, List<GutendexBook> results) {
 
     public record GutendexBook(
-            Integer id,
+            Long id,
             String title,
             List<Author> authors,
             List<String> languages,
