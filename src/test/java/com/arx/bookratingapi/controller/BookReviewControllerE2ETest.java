@@ -1,4 +1,4 @@
-package com.arx.bookratingapi.service;
+package com.arx.bookratingapi.controller;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
@@ -82,7 +82,7 @@ public class BookReviewControllerE2ETest {
 
     BookReviewCommand bookReview = new BookReviewCommand(1L, 5F, "A great book to read");
 
-    stubFor(get("/books/1/").willReturn(aResponse()
+    mockBookService.stubFor(get("/books/1/").willReturn(aResponse()
         .withHeader("Content-Type", "application/json")
         .withStatus(200)
         .withBody(gutendexMockResponse)));
