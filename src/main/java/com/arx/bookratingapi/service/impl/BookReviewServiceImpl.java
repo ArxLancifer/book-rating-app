@@ -8,6 +8,7 @@ import com.arx.bookratingapi.model.entity.BookReview;
 import com.arx.bookratingapi.model.mapper.BookReviewMapper;
 import com.arx.bookratingapi.repository.BookReviewRepository;
 import com.arx.bookratingapi.service.BookReviewService;
+import com.arx.bookratingapi.service.BookService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +17,19 @@ import java.util.List;
 @Service
 public class BookReviewServiceImpl implements BookReviewService {
 
-    private final BookServiceImpl bookServiceImpl;
+    private final BookService bookService;
     private final BookReviewRepository bookReviewRepository;
 
-    public BookReviewServiceImpl(BookServiceImpl bookServiceImpl, BookReviewRepository bookReviewRepository) {
-        this.bookServiceImpl = bookServiceImpl;
-        this.bookReviewRepository = bookReviewRepository;
-    }
+  public BookReviewServiceImpl(BookService bookService, BookReviewRepository bookReviewRepository) {
+    this.bookService = bookService;
+    this.bookReviewRepository = bookReviewRepository;
+  }
 
-    @Transactional
+
+  @Transactional
     public void postReview(BookReviewCommand bookReviewCommand){
 
-        bookServiceImpl.searchById(bookReviewCommand.bookId());
+        bookService.searchById(bookReviewCommand.bookId());
 
         BookReview bookReview = BookReviewMapper.toEntity(bookReviewCommand);
 
@@ -40,7 +42,7 @@ public class BookReviewServiceImpl implements BookReviewService {
 
         checkBookHasReviews(bookReviews, bookId);
 
-        SingleBookResponse bookResponse = bookServiceImpl.searchById(bookId);
+        SingleBookResponse bookResponse = bookService.searchById(bookId);
 
         return BookReviewMapper.toDetailedBookReviewResponse(bookResponse, bookReviews, bookReviews.getFirst().getRating());
     }

@@ -106,9 +106,9 @@ public class BookReviewControllerE2ETest {
   void postReview_returns_404_when_book_not_found() throws Exception {
 
     // Setup
-    BookReviewCommand bookReview = new BookReviewCommand(1L, 5F, "A great book to read");
+    BookReviewCommand bookReview = new BookReviewCommand(10L, 5F, "A great book to read");
 
-    mockBookService.stubFor(get(urlEqualTo( "/books/1/")).willReturn(aResponse()
+    mockBookService.stubFor(get(urlEqualTo( "/books/10/")).willReturn(aResponse()
         .withHeader("Content-Type", "application/json")
         .withBody("{\"detail\": \"No Book matches the given query.\"}")
         .withStatus(404)));

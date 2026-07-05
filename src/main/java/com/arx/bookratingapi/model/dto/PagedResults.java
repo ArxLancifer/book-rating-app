@@ -1,12 +1,10 @@
 package com.arx.bookratingapi.model.dto;
 
-import lombok.AccessLevel;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.List;
-
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @Getter
 public class PagedResults<T> {
 

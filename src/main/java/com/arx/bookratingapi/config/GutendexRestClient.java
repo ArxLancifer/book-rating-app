@@ -9,7 +9,7 @@ import org.springframework.web.client.RestClient;
 @Configuration
 public class GutendexRestClient {
 
-    @Value("${gutendex-base-url}")
+    @Value("${app.gutendex.base-url}")
     private String baseUrl;
 
     @Bean

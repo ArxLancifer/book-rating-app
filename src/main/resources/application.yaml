@@ -10,4 +10,8 @@ spring:
     hibernate:
       ddl-auto: validate
 
-gutendex-base-url: https://gutendex.com/
+app:
+  gutendex:
+    base-url: https://gutendex.com/
+  scheduler:
+    clean-book-cache-cron: 0 0 0 * * ?
