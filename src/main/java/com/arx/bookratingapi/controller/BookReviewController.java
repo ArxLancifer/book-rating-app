@@ -2,6 +2,7 @@ package com.arx.bookratingapi.controller;
 
 import com.arx.bookratingapi.model.dto.BookReviewCommand;
 import com.arx.bookratingapi.model.dto.DetailedBookReviewResponse;
+import com.arx.bookratingapi.model.dto.MonthlyBookRatingResponse;
 import com.arx.bookratingapi.model.dto.PagedResults;
 import com.arx.bookratingapi.model.dto.gutendex.SingleBookResponse;
 import com.arx.bookratingapi.service.BookReviewService;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static com.arx.bookratingapi.shared.BookEndpoints.MONTHLY_BOOK_RATINGS;
 import static com.arx.bookratingapi.shared.BookEndpoints.REVIEWS;
 import static com.arx.bookratingapi.shared.BookEndpoints.TOP_RATED;
 
@@ -38,6 +40,11 @@ public class BookReviewController {
     @GetMapping(TOP_RATED)
     public ResponseEntity<PagedResults<SingleBookResponse>> getTopRatedBooks(@RequestParam Integer limit, @RequestParam(defaultValue = "1") Integer page){
         return ResponseEntity.ok(bookReviewService.getTopRatedBooks(limit, page));
+    }
+
+    @GetMapping(MONTHLY_BOOK_RATINGS)
+    public ResponseEntity<MonthlyBookRatingResponse> getMonthlyRatings(@PathVariable Long bookId){
+        return ResponseEntity.ok(bookReviewService.getMonthlyBookRatings(bookId));
     }
 
 }

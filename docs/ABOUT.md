@@ -43,3 +43,7 @@ API Endpoints (inferred from controllers)
 - GET /books/search?title={title}&page={page}
   - Description: Search books by title via the external provider. `page` defaults to 1.
   - Response: PagedResults<SingleBookResponse>
+
+- GET /reviews/books/{bookId}/monthly-ratings
+  - Description: Get monthly ratings of a specific book.
+  - Response: MonthlyBookRatingResponse

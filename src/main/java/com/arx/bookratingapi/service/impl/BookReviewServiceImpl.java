@@ -1,10 +1,12 @@
 package com.arx.bookratingapi.service.impl;
 
 import com.arx.bookratingapi.exceptionhandler.customexceptions.NotFoundException;
+import com.arx.bookratingapi.model.dao.MonthlyBookRating;
 import com.arx.bookratingapi.model.dto.BookReviewCommand;
 import com.arx.bookratingapi.model.dto.DetailedBookReviewResponse;
+import com.arx.bookratingapi.model.dto.MonthlyBookRatingResponse;
 import com.arx.bookratingapi.model.dto.PagedResults;
-import com.arx.bookratingapi.model.dto.TopRatedBook;
+import com.arx.bookratingapi.model.dao.TopRatedBook;
 import com.arx.bookratingapi.model.dto.gutendex.SingleBookResponse;
 import com.arx.bookratingapi.model.entity.BookReview;
 import com.arx.bookratingapi.model.mapper.BookReviewMapper;
@@ -42,7 +44,7 @@ public class BookReviewServiceImpl implements BookReviewService {
 
         List<BookReview> bookReviews = bookReviewRepository.findBookReviewsByBookIdAndAvgRate(bookId);
 
-        checkBookHasReviews(bookReviews, bookId);
+        handleEmptyList(bookReviews, bookId, "reviews");
 
         SingleBookResponse bookResponse = bookService.searchById(bookId);
 
@@ -58,9 +60,21 @@ public class BookReviewServiceImpl implements BookReviewService {
     return bookService.searchMultipleById(topRatedBookIds, page);
   }
 
-  private void checkBookHasReviews(List<BookReview> bookReviews, Long bookId){
-        if(bookReviews.isEmpty()){
-            throw new NotFoundException("No reviews were found for the book with the given ID:" + bookId);
+  @Override
+  public MonthlyBookRatingResponse getMonthlyBookRatings(Long bookId) {
+
+    List<MonthlyBookRating> monthlyBookRatings = bookReviewRepository.findMonthlyBookRatings(bookId);
+
+    handleEmptyList(monthlyBookRatings, bookId, "ratings");
+
+    SingleBookResponse singleBookResponse = bookService.searchById(bookId);
+
+    return new MonthlyBookRatingResponse(singleBookResponse, monthlyBookRatings);
+  }
+
+  private <T> void handleEmptyList(List<T> listElements, Long bookId, String subject){
+        if(listElements.isEmpty()){
+            throw new NotFoundException(String.format("No %s were found for given book ID: %d", subject, bookId));
         }
     }
 
