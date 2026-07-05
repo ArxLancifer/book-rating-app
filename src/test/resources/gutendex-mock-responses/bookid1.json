@@ -1,0 +1,45 @@
+{
+  "id": 1,
+  "title": "The Declaration of Independence of the United States of America",
+  "authors": [
+    {
+      "name": "Jefferson, Thomas",
+      "birth_year": 1743,
+      "death_year": 1826
+    }
+  ],
+  "summaries": [
+    "\"The Declaration of Independence of the United States of America\" by Thomas Jefferson is a founding document adopted in 1776. Written primarily by Jefferson between June 11 and June 28, it formally explains why the Thirteen Colonies declared independence from British rule. The document lists 27 grievances against King George III and asserts natural rights including life, liberty, and the pursuit of happiness. Its ratification on July 4, 1776, marked an act of treason against the Crown, transforming colonial delegates into America's Founding Fathers. (This is an automatically generated summary.)"
+  ],
+  "editors": [],
+  "translators": [],
+  "subjects": [
+    "United States -- History -- Revolution, 1775-1783 -- Sources",
+    "United States. Declaration of Independence"
+  ],
+  "bookshelves": [
+    "American Revolutionary War",
+    "Category: Essays, Letters & Speeches",
+    "Category: History - American",
+    "Category: History - Modern (1750+)",
+    "Category: Philosophy & Ethics",
+    "Category: Politics",
+    "Politics",
+    "United States Law"
+  ],
+  "languages": [
+    "en"
+  ],
+  "copyright": false,
+  "media_type": "Text",
+  "formats": {
+    "text/html": "https://www.gutenberg.org/ebooks/1.html.images",
+    "application/epub+zip": "https://www.gutenberg.org/ebooks/1.epub3.images",
+    "application/x-mobipocket-ebook": "https://www.gutenberg.org/ebooks/1.kf8.images",
+    "application/rdf+xml": "https://www.gutenberg.org/ebooks/1.rdf",
+    "image/jpeg": "https://www.gutenberg.org/cache/epub/1/pg1.cover.medium.jpg",
+    "application/octet-stream": "https://www.gutenberg.org/cache/epub/1/pg1-h.zip",
+    "text/plain; charset=utf-8": "https://www.gutenberg.org/ebooks/1.txt.utf-8"
+  },
+  "download_count": 3854
+}

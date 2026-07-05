@@ -9,3 +9,5 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+
+gutendex-base-url: https://gutendex.com/
