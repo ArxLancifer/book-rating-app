@@ -1,5 +1,6 @@
 package com.arx.bookratingapi.repository;
 
+import com.arx.bookratingapi.model.dto.TopRatedBook;
 import com.arx.bookratingapi.model.entity.BookReview;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,6 +23,21 @@ public interface BookReviewRepository extends JpaRepository<BookReview, Long> {
     WHERE book_id = :bookId
     """,
     nativeQuery = true)
-    List<BookReview> getBookReviewsByBookIdAndAvgRate(Long bookId);
+    List<BookReview> findBookReviewsByBookIdAndAvgRate(Long bookId);
+
+
+    @Query(
+        value = """
+        SELECT
+           book_id,
+           ROUND(AVG(rating)::NUMERIC, 2)::REAL AS average_rating,
+           COUNT(*) AS total_reviews
+       FROM book_reviews.book_review br
+       GROUP BY br.book_id
+       ORDER BY average_rating DESC, total_reviews DESC
+       LIMIT :limit;
+    """,
+        nativeQuery = true)
+    List<TopRatedBook> findTopRatedBooks(Integer limit);
 
 }

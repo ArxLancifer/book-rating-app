@@ -1,5 +1,6 @@
 package com.arx.bookratingapi.service.impl;
 
+import static com.arx.bookratingapi.shared.GutendexUriConstants.IDS_PARAM;
 import static com.arx.bookratingapi.shared.GutendexUriConstants.PAGE_PARAM;
 import static com.arx.bookratingapi.shared.GutendexUriConstants.SEARCH_BOOKS_PATH;
 import static com.arx.bookratingapi.shared.GutendexUriConstants.SEARCH_BOOK_BY_ID_PATH;
@@ -9,6 +10,8 @@ import com.arx.bookratingapi.model.dto.PagedResults;
 import com.arx.bookratingapi.model.dto.gutendex.GutendexBookResponse;
 import com.arx.bookratingapi.model.dto.gutendex.SingleBookResponse;
 import com.arx.bookratingapi.service.BookService;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -49,6 +52,24 @@ public class BookServiceImpl implements BookService {
                 .build(bookId))
                 .retrieve()
                 .body(SingleBookResponse.class);
+    }
+
+
+    @Override
+    public PagedResults<SingleBookResponse> searchMultipleById(List<Long> bookIds, Integer page) {
+
+        String paramBookIds = bookIds.stream()
+            .map(String::valueOf)
+            .collect(Collectors.joining(","));
+
+        GutendexBookResponse gutendexBookResponse = gutendexClient.get().uri(uriBuilder -> uriBuilder
+                .path(SEARCH_BOOKS_PATH)
+                .queryParam(IDS_PARAM, paramBookIds)
+                .build())
+            .retrieve()
+            .body(GutendexBookResponse.class);
+
+        return buildPagedResult(gutendexBookResponse, page);
     }
 
     private PagedResults<SingleBookResponse> buildPagedResult(GutendexBookResponse gutendexBookResponse, Integer currentPage){

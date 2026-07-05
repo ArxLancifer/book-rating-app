@@ -14,5 +14,6 @@ public final class GutendexUriConstants {
 
         public static final String SEARCH_PARAM = "search";
         public static final String PAGE_PARAM = "page";
+        public static final String IDS_PARAM = "ids";
 
 }

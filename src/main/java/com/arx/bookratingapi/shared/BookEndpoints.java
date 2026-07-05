@@ -9,5 +9,6 @@ public final class BookEndpoints {
     public static final String BOOKS = "/books";
     public static final String BOOKS_SEARCH = "/search";
     public static final String REVIEWS = "/reviews";
+    public static final String TOP_RATED = "/top-rated";
 
 }
