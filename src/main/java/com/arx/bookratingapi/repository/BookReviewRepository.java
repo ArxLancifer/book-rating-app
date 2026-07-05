@@ -18,7 +18,7 @@ public interface BookReviewRepository extends JpaRepository<BookReview, Long> {
         br.is_deleted,
         br.updated_on,
         ROUND(AVG(rating) OVER (PARTITION BY book_id)::NUMERIC, 2) AS rating 
-    FROM book_reviews.book_review br
+    FROM book_review br
     WHERE book_id = :bookId
     """,
     nativeQuery = true)
